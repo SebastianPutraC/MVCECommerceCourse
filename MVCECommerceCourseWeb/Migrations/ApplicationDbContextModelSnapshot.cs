@@ -15,7 +15,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     // If you encounter a merge conflict in the line below, it means you need to
     // discard one of the migration branches and recreate its migrations on top of
     // the other branch. See https://aka.ms/efcore-docs-migrations-conflicts for more info.
-    public override string LastMigrationId => "20261123114302_UpdateIdInCategory";
+    public override string LastMigrationId => "20261123120429_SeedCategoryTable";
 
     protected override void BuildModel(ModelBuilder modelBuilder)
     {
@@ -41,6 +41,23 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                 b.HasKey("Id");
 
                 b.ToTable("Categories");
+
+                b.HasData(
+                    new
+                    {
+                        Id = 1,
+                        Name = "Action"
+                    },
+                    new
+                    {
+                        Id = 2,
+                        Name = "SciFi"
+                    },
+                    new
+                    {
+                        Id = 3,
+                        Name = "History"
+                    });
             });
 #pragma warning restore 612, 618
     }

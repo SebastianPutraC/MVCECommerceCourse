@@ -19,3 +19,6 @@ every table needs their primary key (usually its id)
 2.7 :
 - Naming attribute on the Model with "Id" will automatically makes it the primary key (So no need for [Key] on the attribute
 - For tutorial purpose, you can just delete the database (on the MSSM) and migration folder if the migrations order is messed up
+2.8 :
+- On the ApplicationDbContext. OnModelCreating function can be used for seeding purpose to generate data on the database
+- ALWAYS MAKE SURE TO CHECK THE MIGRATION DATA BEFORE update-database
