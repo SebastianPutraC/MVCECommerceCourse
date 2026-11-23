@@ -1,0 +1,5 @@
+﻿2.2 :
+- Make sure to change the type of the existing server if the DB edition can only run on production or nearly out of trial, to the Express Edition.
+- This is used to connect to SQL Server 2025 Database. The Trusted_Connection, and TrustServerCertificate is applied here based on how you connect to the server on the
+Microsoft SQL Server Manager (Tick on the "Trust Server Certificate)
+"SQLConnection": "Server=(localdb)\\MSSQLLocalDB;Database=MVCECommerceCourse;Trusted_Connection=True;TrustServerCertificate=True"
