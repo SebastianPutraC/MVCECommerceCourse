@@ -3,3 +3,10 @@
 - This is used to connect to SQL Server 2025 Database. The Trusted_Connection, and TrustServerCertificate is applied here based on how you connect to the server on the
 Microsoft SQL Server Manager (Tick on the "Trust Server Certificate)
 "SQLConnection": "Server=(localdb)\\MSSQLLocalDB;Database=MVCECommerceCourse;Trusted_Connection=True;TrustServerCertificate=True"
+2.3 :
+- Install Nuget Microsoft.EntityFrameworkCore.SqlServer and Microsoft.EntityFrameworkCore.Tool
+2.4 :
+- ApplicationDbContext is used to create models (Category -> Categories in DB) to the database
+2.5 : 
+- Add the AddDbContext for the newly made <ApplicationDbContext>
+- Use the Builder.Configuration to get the Connection String from appsettings.Development.json that we used to connect to the SQL Server database.
