@@ -1,0 +1,24 @@
+﻿2.2 :
+- Make sure to change the type of the existing server if the DB edition can only run on production or nearly out of trial, to the Express Edition.
+- This is used to connect to SQL Server 2025 Database. The Trusted_Connection, and TrustServerCertificate is applied here based on how you connect to the server on the
+Microsoft SQL Server Manager (Tick on the "Trust Server Certificate)
+"SQLConnection": "Server=(localdb)\\MSSQLLocalDB;Database=MVCECommerceCourse;Trusted_Connection=True;TrustServerCertificate=True"
+2.3 :
+- Install Nuget Microsoft.EntityFrameworkCore.SqlServer and Microsoft.EntityFrameworkCore.Tool. (Tool need Microsoft.EntityFrameworkCore.Design as well)
+2.4 :
+- ApplicationDbContext is used to create models (Category -> Categories in DB) to the database
+2.5 : 
+- Add the AddDbContext for the newly made <ApplicationDbContext>
+- Use the Builder.Configuration to get the Connection String from appsettings.Development.json that we used to connect to the SQL Server database.
+2.6 :
+- Go to the package manager console (or any other console) and use |add-migration "custom migration name"| (example add-migration AddCategoryToDb)
+- After migrating, there will be a new folder of Migrations that store all of the changes
+- In the Category model, you can use [Key] to specified which attribute is the primary key. This will make the migration work since
+every table needs their primary key (usually its id)
+- To Update the database based on the migrations folder. Do |update-database "migration name"| for specific migration. Or |update-database| to run all migration in the folder
+2.7 :
+- Naming attribute on the Model with "Id" will automatically makes it the primary key (So no need for [Key] on the attribute
+- For tutorial purpose, you can just delete the database (on the MSSM) and migration folder if the migrations order is messed up
+2.8 :
+- On the ApplicationDbContext. OnModelCreating function can be used for seeding purpose to generate data on the database
+- ALWAYS MAKE SURE TO CHECK THE MIGRATION DATA BEFORE update-database
