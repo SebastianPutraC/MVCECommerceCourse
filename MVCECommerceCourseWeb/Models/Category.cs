@@ -4,8 +4,8 @@ namespace MVCECommerceCourseWeb.Models
 {
     public class Category
     {
-        [Key]
-        public int CatgeoryIndentification { get; set; }
+        //[Key]
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
     }
 }

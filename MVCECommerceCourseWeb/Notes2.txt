@@ -16,3 +16,6 @@ Microsoft SQL Server Manager (Tick on the "Trust Server Certificate)
 - In the Category model, you can use [Key] to specified which attribute is the primary key. This will make the migration work since
 every table needs their primary key (usually its id)
 - To Update the database based on the migrations folder. Do |update-database "migration name"| for specific migration. Or |update-database| to run all migration in the folder
+2.7 :
+- Naming attribute on the Model with "Id" will automatically makes it the primary key (So no need for [Key] on the attribute
+- For tutorial purpose, you can just delete the database (on the MSSM) and migration folder if the migrations order is messed up
