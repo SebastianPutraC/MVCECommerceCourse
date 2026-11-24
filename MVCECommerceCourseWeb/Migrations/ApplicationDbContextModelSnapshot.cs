@@ -15,7 +15,7 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     // If you encounter a merge conflict in the line below, it means you need to
     // discard one of the migration branches and recreate its migrations on top of
     // the other branch. See https://aka.ms/efcore-docs-migrations-conflicts for more info.
-    public override string LastMigrationId => "20261123120429_SeedCategoryTable";
+    public override string LastMigrationId => "20261124091601_AddDisplayOrderToSeedData";
 
     protected override void BuildModel(ModelBuilder modelBuilder)
     {
@@ -34,6 +34,9 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 
                 SqlServerPropertyBuilderExtensions.UseIdentityColumn(id);
 
+                b.Property<int>("DisplayOrder")
+                    .HasColumnType("int");
+
                 b.Property<string>("Name")
                     .IsRequired()
                     .HasColumnType("nvarchar(max)");
@@ -46,16 +49,19 @@ partial class ApplicationDbContextModelSnapshot : ModelSnapshot
                     new
                     {
                         Id = 1,
+                        DisplayOrder = 1,
                         Name = "Action"
                     },
                     new
                     {
                         Id = 2,
+                        DisplayOrder = 2,
                         Name = "SciFi"
                     },
                     new
                     {
                         Id = 3,
+                        DisplayOrder = 3,
                         Name = "History"
                     });
             });
