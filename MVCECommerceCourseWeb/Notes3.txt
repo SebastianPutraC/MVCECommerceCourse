@@ -9,3 +9,9 @@ called "Privacy"
 3.5 :
 - you can use C# on the Index.cshtml. There's seems to be only one model allowed to be sent into the razor view of Index.cshtml.
 If need more, than combine those models into one singular class 
+3.6, 3.7 :
+- A lot of changes using course content on UI. Its on _Layout, site.css, and category index.
+- Update how the category is shown on the view index after copying the design. There's a commented section on the 
+<tbody> part that can be used to display the category data from the database
+- In the same category view index, add asp-controller and asp-action for creating new category (The action is "Create" but still use "Category" as its controller). 
+Its on the top using the <a> hyperlink on the top, it can be to route to that create page. Dont forget to remove the href
