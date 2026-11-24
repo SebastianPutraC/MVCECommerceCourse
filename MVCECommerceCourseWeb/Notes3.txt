@@ -1,3 +1,8 @@
 ﻿3.1 :
 - New Category Controller. The view folder's name should be "Category" matching the controller, and the function that specify which site should be "Index" same as the on on the controller
 - Instead of just build, choose rebuild solution to update everything for the routing
+3.4 :
+- On the _Layout.cshtml asp-controller="Home" refer to the Home controller, while asp-action="Privacy" refer to the function inside the home controller
+called "Privacy"
+- You can specify which file of Views to be shown on the controller. In the CategoryController at Index function, change to return View("Test");
+- Depedency Injection in use in CategoryController where the already Program (Main) created the ApplcationDbContext instead of another class that want to use its function
