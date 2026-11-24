@@ -1,0 +1,17 @@
+﻿3.1 :
+- New Category Controller. The view folder's name should be "Category" matching the controller, and the function that specify which site should be "Index" same as the on on the controller
+- Instead of just build, choose rebuild solution to update everything for the routing
+3.4 :
+- On the _Layout.cshtml asp-controller="Home" refer to the Home controller, while asp-action="Privacy" refer to the function inside the home controller
+called "Privacy"
+- You can specify which file of Views to be shown on the controller. In the CategoryController at Index function, change to return View("Test");
+- Depedency Injection in use in CategoryController where the already Program (Main) created the ApplcationDbContext instead of another class that want to use its function
+3.5 :
+- you can use C# on the Index.cshtml. There's seems to be only one model allowed to be sent into the razor view of Index.cshtml.
+If need more, than combine those models into one singular class 
+3.6, 3.7 :
+- A lot of changes using course content on UI. Its on _Layout, site.css, and category index.
+- Update how the category is shown on the view index after copying the design. There's a commented section on the 
+<tbody> part that can be used to display the category data from the database
+- In the same category view index, add asp-controller and asp-action for creating new category (The action is "Create" but still use "Category" as its controller). 
+Its on the top using the <a> hyperlink on the top, it can be to route to that create page. Dont forget to remove the href

@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//ApplicationDbContext is created here and used for DependencyInjection to other class
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     //options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:SQLConnection").Value);
