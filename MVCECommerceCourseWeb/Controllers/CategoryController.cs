@@ -16,8 +16,10 @@ namespace MVCECommerceCourseWeb.Controllers
         public IActionResult Index()
         {
             var categories = _context.Categories.ToList();
+
+            return View("Index", categories); //Passing categories to be used on Views
+
             //return View("Test");  Just for example of trying to find the "Test" file on the Views instead of "Index"
-            return View("Index");
         }
     }
 }

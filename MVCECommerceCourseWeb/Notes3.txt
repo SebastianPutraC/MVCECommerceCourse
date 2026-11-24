@@ -6,3 +6,6 @@
 called "Privacy"
 - You can specify which file of Views to be shown on the controller. In the CategoryController at Index function, change to return View("Test");
 - Depedency Injection in use in CategoryController where the already Program (Main) created the ApplcationDbContext instead of another class that want to use its function
+3.5 :
+- you can use C# on the Index.cshtml. There's seems to be only one model allowed to be sent into the razor view of Index.cshtml.
+If need more, than combine those models into one singular class 
