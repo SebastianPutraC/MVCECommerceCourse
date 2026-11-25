@@ -1,0 +1,45 @@
+﻿4.1 :
+- Copy the snipper again for the Create action views.
+4.2 : 
+- The from on the Create.cshtml uses post as method, it will use the [HttpPost] function in CategoryController
+- asp-for is used for input on the Create.cshtml form, it will match the @model given to be processed in the controller's CreatePOST function
+- _context_SaveChanges() will automatically add the data to database
+- Use RedirectToAction to automatically make a new request to the specified MVC Action. Usually done after doing POST request so the index is updated
+4.3 :
+- To prevent cross site POST request and only accept request from the correct form. Use [ValidateAntiForgeryToken] on the Post action function.
+4.4 :
+- asp-validation-summary="All/ModelOnly" is used to display errors when there's a wrong input on the form
+- You can check for input error on the CategoryController, as well as on the Category model. So not only the model has to pass DB requirement but also
+the custom check that you made (Example, same name for category)
+4.5 :
+- asp-validation-for= can be used for specific wrongly input model attribute.
+- You can use @section Scripts on the cshtml file (this time on Create) to use javascript. Its used to make a partial view that display another
+validation on client-side. client-side will always check before user submits, while server side check after the user click submit
+- putitng asp-for on the label. If you click the form title, it will highlight the input form
+4.6 : 
+- asp-controller is optional (probably checking the folder name on views) if there's already asp-action but just to make sure, i'll add them just in case.
+- |asp-route-id="@obj.Id| this is used to add another parameter in the url to specify which value on the page will be shown based on ID information
+it is originally asp-rout then add -id (or should be the name of the parameter). This is used for Edit(Update) and later maybe Delete
+4.7 :
+- Copy Create.cshtml to Update.cshtml. You can make sure that it's using the Update function by adding asp-action on the <form>
+- We can use the same function (From CreatePOST to UpdatePOST) for both making new item or updating one. This should work but its better to have seperate function for this
+- To make sure that the ID is retrieve on the update. Add the ID in a hidden property just below the <form> 
+by using <input asp-for="Id" hidden/>
+- While method="post" should automatically use the [HttpPost] function on update and create.cshtml. Its better to specify using asp-action. The create on
+my end is bugged without the asp-action
+4.8 :
+- Copy Update.cshtml to Delete.cshtml. Remove the validation and all the input form to be readonly (name and display order)
+- Dont forget the |asp-route-id="@obj.Id| on the delete button to pass the id on which category needs to be deleted
+4.9 : 
+- Return the commented createPOST function. Im a dumbass on 4.7. Put it up close to the Create function
+- TempData is used on all the post action (As of now, Create, Update, and Delete) to be shown after a succesful action on the index view. Update the index.cshtml and add
+an if statement to check if there's previous succesful action and show the notification
+4.10 :
+- Add a Partial View _Notification to be used for all Notification popup. Put it on Shared folder. For now this is used for succesfull action and error.
+move the if statement on index previously to _Notification and use <partial name="_Notification" />
+4.11 :
+- To use Toastr for notifcaiton. Copy the minified (use debug if they fixed that) and put it on the _Layout. Copy the default stylesheet and change the href to the link above (//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css)
+The javascript minified  (//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js) will be put on _Notification. and comment the <div>
+dont forget <script src="~/lib/jquery/dist/jquery.min.js"></script> on bottom part of _Layout so that it use javascript on the _Notification
+4.12 :
+- Put the partial view of index(category) on _Layout so its accesible in all page. Put that on top of RenderBody()
