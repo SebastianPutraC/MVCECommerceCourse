@@ -28,6 +28,31 @@ namespace MVCECommerceCourseWeb.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Create")]
+        public IActionResult CreatePOST(Category category)
+        {
+            //Check Custom error and Display error message for specific errors outside of DB requirement
+            if (!String.IsNullOrEmpty(category.Name)
+                && _context.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower()))
+            {
+                ModelState.AddModelError("", "Category name already exists!");
+            }
+
+            //Default error by checking on the DB requirement
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Add(category);
+                _context.SaveChanges();
+
+                TempData["success"] = "Category created successfully";
+
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
         public IActionResult Update(int? id)
         {
             if(id == null || id == 0)
@@ -61,6 +86,9 @@ namespace MVCECommerceCourseWeb.Controllers
             {
                 _context.Categories.Update(category);
                 _context.SaveChanges();
+
+                TempData["success"] = "Category updated successfully";
+
                 return RedirectToAction("Index");
             }
             return View();
@@ -94,30 +122,10 @@ namespace MVCECommerceCourseWeb.Controllers
 
             _context.Categories.Remove(category);
             _context.SaveChanges();
+
+            TempData["success"] = "Category deleted successfully";
+
             return RedirectToAction("Index");
         }
-
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        [ActionName("Create")]
-        public IActionResult CreatePOST(Category category)
-        {
-            //Check Custom error and Display error message for specific errors outside of DB requirement
-            if (!String.IsNullOrEmpty(category.Name)
-                && _context.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower()))
-            {
-                ModelState.AddModelError("", "Category name already exists!");
-            }
-
-            //Default error by checking on the DB requirement
-            if (ModelState.IsValid)
-            {
-                _context.Categories.Add(category);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View();
-        }*/
-
     }
 }

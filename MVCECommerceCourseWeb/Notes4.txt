@@ -22,7 +22,7 @@ validation on client-side. client-side will always check before user submits, wh
 it is originally asp-rout then add -id (or should be the name of the parameter). This is used for Edit(Update) and later maybe Delete
 4.7 :
 - Copy Create.cshtml to Update.cshtml. You can make sure that it's using the Update function by adding asp-action on the <form>
-- We can use the same function (From CreatePOST to UpdatePOST) for both making new item or updating one.
+- We can use the same function (From CreatePOST to UpdatePOST) for both making new item or updating one. This should work but its better to have seperate function for this
 - To make sure that the ID is retrieve on the update. Add the ID in a hidden property just below the <form> 
 by using <input asp-for="Id" hidden/>
 - While method="post" should automatically use the [HttpPost] function on update and create.cshtml. Its better to specify using asp-action. The create on
@@ -30,3 +30,7 @@ my end is bugged without the asp-action
 4.8 :
 - Copy Update.cshtml to Delete.cshtml. Remove the validation and all the input form to be readonly (name and display order)
 - Dont forget the |asp-route-id="@obj.Id| on the delete button to pass the id on which category needs to be deleted
+4.9 : 
+- Return the commented createPOST function. Im a dumbass on 4.7. Put it up close to the Create function
+- TempData is used on all the post action (As of now, Create, Update, and Delete) to be shown after a succesful action on the index view. Update the index.cshtml and add
+an if statement to check if there's previous succesful action and show the notification
