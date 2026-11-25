@@ -20,3 +20,10 @@ validation on client-side. client-side will always check before user submits, wh
 - asp-controller is optional (probably checking the folder name on views) if there's already asp-action but just to make sure, i'll add them just in case.
 - |asp-route-id="@obj.Id| this is used to add another parameter in the url to specify which value on the page will be shown based on ID information
 it is originally asp-rout then add -id (or should be the name of the parameter). This is used for Edit(Update) and later maybe Delete
+4.7 :
+- Copy Create.cshtml to Update.cshtml. You can make sure that it's using the Update function by adding asp-action on the <form>
+- We can use the same function (From CreatePOST to UpdatePOST) for both making new item or updating one.
+- To make sure that the ID is retrieve on the update. Add the ID in a hidden property just below the <form> 
+by using <input asp-for="Id" hidden/>
+- While method="post" should automatically use the [HttpPost] function on update and create.cshtml. Its better to specify using asp-action. The create on
+my end is bugged without the asp-action

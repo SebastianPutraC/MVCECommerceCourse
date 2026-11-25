@@ -45,6 +45,29 @@ namespace MVCECommerceCourseWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ActionName("Update")]
+        public IActionResult UpdatePOST(Category category)
+        {
+            //Check Custom error and Display error message for specific errors outside of DB requirement
+            if (!String.IsNullOrEmpty(category.Name)
+                && _context.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower()
+                && c.Id != category.Id))
+            {
+                ModelState.AddModelError("", "Category name already exists!");
+            }
+
+            //Default error by checking on the DB requirement
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Update(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
         [ActionName("Create")]
         public IActionResult CreatePOST(Category category)
         {
@@ -63,6 +86,6 @@ namespace MVCECommerceCourseWeb.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-        }
+        }*/
     }
 }
