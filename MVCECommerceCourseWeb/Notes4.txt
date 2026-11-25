@@ -37,3 +37,9 @@ an if statement to check if there's previous succesful action and show the notif
 4.10 :
 - Add a Partial View _Notification to be used for all Notification popup. Put it on Shared folder. For now this is used for succesfull action and error.
 move the if statement on index previously to _Notification and use <partial name="_Notification" />
+4.11 :
+- To use Toastr for notifcaiton. Copy the minified (use debug if they fixed that) and put it on the _Layout. Copy the default stylesheet and change the href to the link above (//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css)
+The javascript minified  (//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js) will be put on _Notification. and comment the <div>
+dont forget <script src="~/lib/jquery/dist/jquery.min.js"></script> on bottom part of _Layout so that it use javascript on the _Notification
+4.12 :
+- Put the partial view of index(category) on _Layout so its accesible in all page. Put that on top of RenderBody()
