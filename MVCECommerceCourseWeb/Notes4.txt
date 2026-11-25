@@ -16,3 +16,7 @@ the custom check that you made (Example, same name for category)
 - You can use @section Scripts on the cshtml file (this time on Create) to use javascript. Its used to make a partial view that display another
 validation on client-side. client-side will always check before user submits, while server side check after the user click submit
 - putitng asp-for on the label. If you click the form title, it will highlight the input form
+4.6 : 
+- asp-controller is optional (probably checking the folder name on views) if there's already asp-action but just to make sure, i'll add them just in case.
+- |asp-route-id="@obj.Id| this is used to add another parameter in the url to specify which value on the page will be shown based on ID information
+it is originally asp-rout then add -id (or should be the name of the parameter). This is used for Edit(Update) and later maybe Delete
