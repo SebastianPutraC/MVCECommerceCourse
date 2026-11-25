@@ -34,3 +34,6 @@ my end is bugged without the asp-action
 - Return the commented createPOST function. Im a dumbass on 4.7. Put it up close to the Create function
 - TempData is used on all the post action (As of now, Create, Update, and Delete) to be shown after a succesful action on the index view. Update the index.cshtml and add
 an if statement to check if there's previous succesful action and show the notification
+4.10 :
+- Add a Partial View _Notification to be used for all Notification popup. Put it on Shared folder. For now this is used for succesfull action and error.
+move the if statement on index previously to _Notification and use <partial name="_Notification" />
