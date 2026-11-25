@@ -21,5 +21,10 @@ namespace MVCECommerceCourseWeb.Controllers
 
             //return View("Test");  Just for example of trying to find the "Test" file on the Views instead of "Index"
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
