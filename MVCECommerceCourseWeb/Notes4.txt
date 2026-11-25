@@ -27,3 +27,6 @@ it is originally asp-rout then add -id (or should be the name of the parameter).
 by using <input asp-for="Id" hidden/>
 - While method="post" should automatically use the [HttpPost] function on update and create.cshtml. Its better to specify using asp-action. The create on
 my end is bugged without the asp-action
+4.8 :
+- Copy Update.cshtml to Delete.cshtml. Remove the validation and all the input form to be readonly (name and display order)
+- Dont forget the |asp-route-id="@obj.Id| on the delete button to pass the id on which category needs to be deleted
