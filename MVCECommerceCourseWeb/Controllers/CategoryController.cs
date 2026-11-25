@@ -29,12 +29,25 @@ namespace MVCECommerceCourseWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [ActionName("Create")]
         public IActionResult CreatePOST(Category category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            //Check Custom error and Display error message for specific errors outside of DB requirement
+            if (!String.IsNullOrEmpty(category.Name)
+                && _context.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower()))
+            {
+                ModelState.AddModelError("", "Category name already exists!");
+            }
+
+            //Default error by checking on the DB requirement
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Add(category);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

@@ -5,3 +5,9 @@
 - asp-for is used for input on the Create.cshtml form, it will match the @model given to be processed in the controller's CreatePOST function
 - _context_SaveChanges() will automatically add the data to database
 - Use RedirectToAction to automatically make a new request to the specified MVC Action. Usually done after doing POST request so the index is updated
+4.3 :
+- To prevent cross site POST request and only accept request from the correct form. Use [ValidateAntiForgeryToken] on the Post action function.
+4.4 :
+- asp-validation-summary="All" is used to display errors when there's a wrong input on the form
+- You can check for input error on the CategoryController, as well as on the Category model. So not only the model has to pass DB requirement but also
+the custom check that you made (Example, same name for category)
