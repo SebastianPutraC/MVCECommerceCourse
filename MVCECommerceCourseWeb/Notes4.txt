@@ -8,6 +8,11 @@
 4.3 :
 - To prevent cross site POST request and only accept request from the correct form. Use [ValidateAntiForgeryToken] on the Post action function.
 4.4 :
-- asp-validation-summary="All" is used to display errors when there's a wrong input on the form
+- asp-validation-summary="All/ModelOnly" is used to display errors when there's a wrong input on the form
 - You can check for input error on the CategoryController, as well as on the Category model. So not only the model has to pass DB requirement but also
 the custom check that you made (Example, same name for category)
+4.5 :
+- asp-validation-for= can be used for specific wrongly input model attribute.
+- You can use @section Scripts on the cshtml file (this time on Create) to use javascript. Its used to make a partial view that display another
+validation on client-side. client-side will always check before user submits, while server side check after the user click submit
+- putitng asp-for on the label. If you click the form title, it will highlight the input form
