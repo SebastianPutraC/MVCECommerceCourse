@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCECommerceCourseWeb.Data;
+using MVCECommerceCourseWeb.Models;
 
 namespace MVCECommerceCourseWeb.Controllers
 {
@@ -25,6 +26,15 @@ namespace MVCECommerceCourseWeb.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ActionName("Create")]
+        public IActionResult CreatePOST(Category category)
+        {
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

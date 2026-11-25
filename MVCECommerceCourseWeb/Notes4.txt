@@ -1,4 +1,7 @@
 ﻿4.1 :
 - Copy the snipper again for the Create action views.
 4.2 : 
--
+- The from on the Create.cshtml uses post as method, it will use the [HttpPost] function in CategoryController
+- asp-for is used for input on the Create.cshtml form, it will match the @model given to be processed in the controller's CreatePOST function
+- _context_SaveChanges() will automatically add the data to database
+- Use RedirectToAction to automatically make a new request to the specified MVC Action. Usually done after doing POST request so the index is updated
