@@ -1,0 +1,24 @@
+﻿5.1 :
+- Make a new project in the same collection with the type of "Class Library"
+5.2 :
+- You can add dependency by Add->Project Reference
+- DataAccess has dependency of Models and Utility, Both reference should not have dependencies on DataAccess or it create circular dependency
+- Web has dependency of Business and Data Access, so this is the top most
+- Business has dependency of Data Access, Models, and Utility. so this is second. Data Access is third and Models and Utility is last
+5.4 :
+- Learn why do we use Task and Async in the CategoryService. This service is closely connected with the database. Some logic from CategoryController will be moved here
+5.5 :
+- You can inject and make CategoryService global by putting it in the program.cs "builder.Services.AddScoped<ICategoryService, CategoryService>();"
+- Functions on Category Controller should return Task since implementation from the CategoryService is using Task as well. Make sure to await for every call on the CategoryService's methods
+5.6 :
+- To seperate the page for admin and controller, you can use Area. To start the controllers and views is moved to the Area folder -> Customer folder
+- Add a new MapControllerRoute that checks the area first then the controller |pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}")|
+- Make sure that the second MapControllerRoute has default to any Area already regiestred |defaults: new { area = "Customer"})|
+- To register an area to customer after everything is put in their place, add [Area("Customer")] on top of the class
+- Then, Copy _ViewImports.cshtml and _ViewStart.cshtml to Admin's and Customer's folder Views
+- To fix the issue of not be able to navigate the header links. delete every asp-are on the _Layout, maybe it will be changed to specify which are it will access
+5.7 :
+- You can delete the title label from the form and this will use the model's variable name (Name and DisplayOrder)
+you can and use [Display] on the model to specify what will be shown for that variable
+- [ValidateNever] will be used later. Instead of following the lecturer, just install it either by the right clicking and QuickAction,
+or install Microsoft.AspNetCore.Mvc.Core manually

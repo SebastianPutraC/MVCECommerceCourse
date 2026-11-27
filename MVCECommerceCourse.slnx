@@ -1,3 +1,7 @@
 <Solution>
+  <Project Path="MVCECommerceCourse.Business/MVCECommerceCourse.Business.csproj" Id="3d9b475e-891a-4dc1-9369-01653d31d665" />
+  <Project Path="MVCECommerceCourse.DataAccess/MVCECommerceCourse.DataAccess.csproj" Id="1ebf7b7d-ad93-4fcb-954b-9f27ca6f7f90" />
+  <Project Path="MVCECommerceCourse.Models/MVCECommerceCourse.Models.csproj" Id="c3d28490-c623-449b-9e5f-bbc90c86a56f" />
+  <Project Path="MVCECommerceCourse.Utility/MVCECommerceCourse.Utility.csproj" Id="96a77b31-1dcb-4975-a7da-e4d684562dc3" />
   <Project Path="MVCECommerceCourseWeb/MVCECommerceCourseWeb.csproj" />
 </Solution>
