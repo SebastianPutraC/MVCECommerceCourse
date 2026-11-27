@@ -23,4 +23,9 @@
     <ProjectReference Include="..\MVCECommerceCourse.DataAccess\MVCECommerceCourse.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

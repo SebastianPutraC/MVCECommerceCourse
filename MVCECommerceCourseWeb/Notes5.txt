@@ -10,3 +10,10 @@
 5.5 :
 - You can inject and make CategoryService global by putting it in the program.cs "builder.Services.AddScoped<ICategoryService, CategoryService>();"
 - Functions on Category Controller should return Task since implementation from the CategoryService is using Task as well. Make sure to await for every call on the CategoryService's methods
+5.6 :
+- To seperate the page for admin and controller, you can use Area. To start the controllers and views is moved to the Area folder -> Customer folder
+- Add a new MapControllerRoute that checks the area first then the controller |pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}")|
+- Make sure that the second MapControllerRoute has default to any Area already regiestred |defaults: new { area = "Customer"})|
+- To register an area to customer after everything is put in their place, add [Area("Customer")] on top of the class
+- Then, Copy _ViewImports.cshtml and _ViewStart.cshtml to Admin's and Customer's folder Views
+- To fix the issue of not be able to navigate the header links. delete every asp-are on the _Layout, maybe it will be changed to specify which are it will access

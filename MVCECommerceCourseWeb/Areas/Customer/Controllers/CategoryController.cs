@@ -5,6 +5,7 @@ using MVCECommerceCourse.Business.Services.IServices;
 
 namespace MVCECommerceCourseWeb.Controllers
 {
+    [Area("Customer")]
     public class CategoryController : Controller
     {
         //Since ApplicationDbContext is already created, no need to make a new one and just get the context
