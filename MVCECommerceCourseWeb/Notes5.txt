@@ -1,0 +1,7 @@
+﻿5.1 :
+- Make a new project in the same collection with the type of "Class Library"
+5.2 :
+- You can add dependency by Add->Project Reference
+- DataAccess has dependency of Models and Utility, Both reference should not have dependencies on DataAccess or it create circular dependency
+- Web has dependency of Business and Data Access, so this is the top most
+- Business has dependency of Data Access, Models, and Utility. so this is second. Data Access is third and Models and Utility is last

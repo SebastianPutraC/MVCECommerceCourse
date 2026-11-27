@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVCECommerceCourseWeb.Models;
+using MVCECommerceCourse.Models;
 
-namespace MVCECommerceCourseWeb.Data
+namespace MVCECommerceCourse.Data
 {
     public class ApplicationDbContext : DbContext
     {

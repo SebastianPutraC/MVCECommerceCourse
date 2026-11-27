@@ -18,4 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MVCECommerceCourse.Business\MVCECommerceCourse.Business.csproj" />
+    <ProjectReference Include="..\MVCECommerceCourse.DataAccess\MVCECommerceCourse.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using MVCECommerceCourseWeb.Data;
+using MVCECommerceCourse.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

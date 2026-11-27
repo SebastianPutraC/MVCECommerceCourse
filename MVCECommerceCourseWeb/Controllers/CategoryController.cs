@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MVCECommerceCourseWeb.Data;
-using MVCECommerceCourseWeb.Models;
+using MVCECommerceCourse.Models;
+using MVCECommerceCourse.Data;
 
 namespace MVCECommerceCourseWeb.Controllers
 {

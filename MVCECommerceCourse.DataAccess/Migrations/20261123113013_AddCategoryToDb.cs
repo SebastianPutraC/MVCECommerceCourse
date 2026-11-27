@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MVCECommerceCourseWeb.Migrations;
+namespace MVCECommerceCourse.DataAccess.Migrations;
 
 /// <inheritdoc />
 public partial class _20261123113013_AddCategoryToDb : Migration

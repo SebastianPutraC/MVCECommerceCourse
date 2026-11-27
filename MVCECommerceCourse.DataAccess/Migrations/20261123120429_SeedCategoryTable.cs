@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace MVCECommerceCourseWeb.Migrations;
+namespace MVCECommerceCourse.DataAccess.Migrations;
 
 /// <inheritdoc />
 public partial class _20261123120429_SeedCategoryTable : Migration
