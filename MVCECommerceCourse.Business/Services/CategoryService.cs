@@ -2,9 +2,6 @@
 using MVCECommerceCourse.Business.Services.IServices;
 using MVCECommerceCourse.Data;
 using MVCECommerceCourse.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MVCECommerceCourse.Business.Services
 {
@@ -45,6 +42,19 @@ namespace MVCECommerceCourse.Business.Services
         {
             _context.Categories.Update(category);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsCategoryNameUniqueAsync(string name, int? categoryId = null)
+        {
+            if (categoryId.HasValue)
+            {
+                //! is used to return boolean AND if anything match this then return false
+                return !await _context.Categories.AnyAsync(c => c.Name.ToLower() == name.ToLower() && c.Id != categoryId.Value);
+            }
+            else
+            {
+                return !await _context.Categories.AnyAsync(c => c.Name.ToLower() == name.ToLower());
+            }
         }
     }
 }

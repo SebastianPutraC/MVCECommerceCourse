@@ -1,29 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCECommerceCourse.Models;
 using MVCECommerceCourse.Data;
+using MVCECommerceCourse.Business.Services.IServices;
 
 namespace MVCECommerceCourseWeb.Controllers
 {
     public class CategoryController : Controller
     {
         //Since ApplicationDbContext is already created, no need to make a new one and just get the context
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(ICategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var categories = _context.Categories.ToList();
+            var categories = await _categoryService.GetAllCategoriesAsync();
 
             return View("Index", categories); //Passing categories to be used on Views
 
             //return View("Test");  Just for example of trying to find the "Test" file on the Views instead of "Index"
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -31,11 +32,11 @@ namespace MVCECommerceCourseWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Create")]
-        public IActionResult CreatePOST(Category category)
+        public async Task<IActionResult> CreatePOST(Category category)
         {
             //Check Custom error and Display error message for specific errors outside of DB requirement
             if (!String.IsNullOrEmpty(category.Name)
-                && _context.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower()))
+                && !await _categoryService.IsCategoryNameUniqueAsync(category.Name))
             {
                 ModelState.AddModelError("", "Category name already exists!");
             }
@@ -43,9 +44,7 @@ namespace MVCECommerceCourseWeb.Controllers
             //Default error by checking on the DB requirement
             if (ModelState.IsValid)
             {
-                _context.Categories.Add(category);
-                _context.SaveChanges();
-
+                await _categoryService.CreateCategoryAsync(category);
                 TempData["success"] = "Category created successfully";
 
                 return RedirectToAction("Index");
@@ -53,14 +52,14 @@ namespace MVCECommerceCourseWeb.Controllers
             return View();
         }
 
-        public IActionResult Update(int? id)
+        public async Task<IActionResult> Update(int? id)
         {
             if(id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var category = _context.Categories.Find(id);
+            var category = await _categoryService.GetCategoryByIdAsync(id.Value);
             if (category == null)
             {
                 return NotFound();
@@ -71,12 +70,11 @@ namespace MVCECommerceCourseWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Update")]
-        public IActionResult UpdatePOST(Category category)
+        public async Task<IActionResult> UpdatePOST(Category category)
         {
             //Check Custom error and Display error message for specific errors outside of DB requirement
             if (!String.IsNullOrEmpty(category.Name)
-                && _context.Categories.Any(c => c.Name.ToLower() == category.Name.ToLower()
-                && c.Id != category.Id))
+               && !await _categoryService.IsCategoryNameUniqueAsync(category.Name, category.Id))
             {
                 ModelState.AddModelError("", "Category name already exists!");
             }
@@ -84,8 +82,7 @@ namespace MVCECommerceCourseWeb.Controllers
             //Default error by checking on the DB requirement
             if (ModelState.IsValid)
             {
-                _context.Categories.Update(category);
-                _context.SaveChanges();
+                await _categoryService.UpdateCategoryAsync(category);
 
                 TempData["success"] = "Category updated successfully";
 
@@ -94,14 +91,14 @@ namespace MVCECommerceCourseWeb.Controllers
             return View();
         }
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var category = _context.Categories.Find(id);
+            var category = await _categoryService.GetCategoryByIdAsync(id.Value);
             if (category == null)
             {
                 return NotFound();
@@ -112,17 +109,9 @@ namespace MVCECommerceCourseWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public IActionResult DeletePOST(int id)
+        public async Task<IActionResult> DeletePOST(int id)
         {
-            var category = _context.Categories.Find(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
-
+            await _categoryService.DeleteCategoryAsync(id);
             TempData["success"] = "Category deleted successfully";
 
             return RedirectToAction("Index");

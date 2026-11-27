@@ -5,3 +5,8 @@
 - DataAccess has dependency of Models and Utility, Both reference should not have dependencies on DataAccess or it create circular dependency
 - Web has dependency of Business and Data Access, so this is the top most
 - Business has dependency of Data Access, Models, and Utility. so this is second. Data Access is third and Models and Utility is last
+5.4 :
+- Learn why do we use Task and Async in the CategoryService. This service is closely connected with the database. Some logic from CategoryController will be moved here
+5.5 :
+- You can inject and make CategoryService global by putting it in the program.cs "builder.Services.AddScoped<ICategoryService, CategoryService>();"
+- Functions on Category Controller should return Task since implementation from the CategoryService is using Task as well. Make sure to await for every call on the CategoryService's methods
