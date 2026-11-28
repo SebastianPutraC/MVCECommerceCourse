@@ -15,3 +15,15 @@ Do this with uppercase and lowercase (category -> product), then also singular a
 6.8 :
 - Dont forget to add a new link in header for Product, put both product and category link as asp-area="Customer"
 - Also important thing, inject the ProductService on the program just like CategoryService previously |builder.Services.AddScoped<IProductService, ProductService>();|
+6.9 :
+- Add DataTables from the web into the project (_Layout). Add the css at the top and JS <script> at the bottom. Don't forget to asp-append-version="true" on both,
+this will be used to automatically update when there's changes from the original site
+- Delete the TBody part of the Product's view's index because it will be replaced by Javascript codes, maybe to use the new DataTables functions. Add id="tblData" to the <table> above the deleted code
+6.10 :
+- Create a new products.js Javascript file on web project's wwwroot folder (js). This will be used for the product's index View on the previously deleted table.
+something like this <script src="~/js/products.js" asp-append-version="true"></script>
+- On the ProductController, we can return the Json file of the product. In this case its on the GetAll function. Make a new region at the bottom to seperate API calls and the others
+This will be used on the javascript file we created previously
+6.11 :
+- Copy the Ajax's loading data (on the DataTables site) and put the id on the index's table to the product javascript. The |ajax: '/product/getall',| part will connect to the GetAll() function on the product controller
+- The Ajax's column need to match the number on the index's table column. It also needs to match each variable's name from the model (JSON) to diplay the correct data.
