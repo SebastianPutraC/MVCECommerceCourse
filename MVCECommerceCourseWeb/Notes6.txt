@@ -1,3 +1,7 @@
 ﻿6.4 :
 - Add another DbSet on the ApplicationDbContext to register the new Product model
 - When using the Package Manager Console, make sure that the default project is set to where the Data and Migration is
+6.5 :
+- Check on how to register a foreign key on the Product that i commented earlier.
+6.6 : 
+- Copy the snipper and add another seeding (modelBuilder) for product in database
