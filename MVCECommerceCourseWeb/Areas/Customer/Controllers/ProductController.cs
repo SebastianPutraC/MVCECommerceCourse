@@ -18,9 +18,9 @@ namespace MVCECommerceCourseWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.GetAllProductsAsync();
-
-            return View("Index", products); //Passing products to be used on Views
+            //Because we use GetAll for product, we dont need to ask for the product again
+            //var products = await _productService.GetAllProductsAsync();
+            return View("Index"); 
         }
 
         public async Task<IActionResult> Create()
@@ -106,7 +106,7 @@ namespace MVCECommerceCourseWeb.Controllers
         #region API CALLS
         public async Task<IActionResult> GetAll()
         {
-            var products = await _productService.GetAllProductsAsync();
+            var products = await _productService.GetAllProductsAsync(true);
 
             return Json(new { data = products });
         }

@@ -27,3 +27,8 @@ This will be used on the javascript file we created previously
 6.11 :
 - Copy the Ajax's loading data (on the DataTables site) and put the id on the index's table to the product javascript. The |ajax: '/product/getall',| part will connect to the GetAll() function on the product controller
 - The Ajax's column need to match the number on the index's table column. It also needs to match each variable's name from the model (JSON) to diplay the correct data.
+6.12 :
+- You can get a whole object from the foreign key data by using Include() on the ProductService's GetAllProductsAsync.
+- For optimization, since we already use GetAll (called in product.js) to get the data for the product, on the Index function just comment the var products = await _productService.GetAllProductsAsync();
+6.14 :
+- You can modify the structure of the table on the product.js. You can even put HTML stuff in there, check them out by using "render": function (data) { *codes }
