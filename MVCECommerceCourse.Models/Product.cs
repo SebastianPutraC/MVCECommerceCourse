@@ -41,8 +41,8 @@ namespace MVCECommerceCourse.Models
         public string? ImageUrl { get; set; }
         
         //The ID for the foreign key
-        public int CategoryId { get; set; } 
-        //The Category itself wont be registered to the DB,
+        public int CategoryId { get; set; }
+        //The Product itself wont be registered to the DB,
         //it will refer to the CategoryId which will be stored on the DB
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }

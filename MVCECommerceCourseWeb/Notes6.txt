@@ -5,3 +5,13 @@
 - Check on how to register a foreign key on the Product that i commented earlier.
 6.6 : 
 - Copy the snipper and add another seeding (modelBuilder) for product in database
+- Thing to note on the SQL Server Management, sometimes closing and opening the program fix issues on updating a table's variable (column)
+6.7 :
+- Adding a new model means adding a new service and controller. For this lecture, the Product needs its own View so we can add them by copying from the
+category Views. It should have all Index, Create, Update, and Delete.cshtml
+- To make the changes from category and product easier, use Find and Replace ("Replace in Files"). You can open up all the new product stuff and pick
+"All Open Documents" from the look in dropdown, then pick Match Case and replace all. 
+Do this with uppercase and lowercase (category -> product), then also singular and plurals (Categories -> Products)
+6.8 :
+- Dont forget to add a new link in header for Product, put both product and category link as asp-area="Customer"
+- Also important thing, inject the ProductService on the program just like CategoryService previously |builder.Services.AddScoped<IProductService, ProductService>();|

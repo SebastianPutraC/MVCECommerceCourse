@@ -1,0 +1,105 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MVCECommerceCourse.Models;
+using MVCECommerceCourse.Data;
+using MVCECommerceCourse.Business.Services.IServices;
+
+namespace MVCECommerceCourseWeb.Controllers
+{
+    [Area("Customer")]
+    public class ProductController : Controller
+    {
+        //Since ApplicationDbContext is already created, no need to make a new one and just get the context
+        private readonly IProductService _productService;
+
+        public ProductController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var products = await _productService.GetAllProductsAsync();
+
+            return View("Index", products); //Passing products to be used on Views
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Create")]
+        public async Task<IActionResult> CreatePOST(Product product)
+        {
+            //Default error by checking on the DB requirement
+            if (ModelState.IsValid)
+            {
+                await _productService.CreateProductAsync(product);
+                TempData["success"] = "Product created successfully";
+
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> Update(int? id)
+        {
+            if(id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var product = await _productService.GetProductByIdAsync(id.Value);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Update")]
+        public async Task<IActionResult> UpdatePOST(Product product)
+        {
+            //Default error by checking on the DB requirement
+            if (ModelState.IsValid)
+            {
+                await _productService.UpdateProductAsync(product);
+
+                TempData["success"] = "Product updated successfully";
+
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var product = await _productService.GetProductByIdAsync(id.Value);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeletePOST(int id)
+        {
+            await _productService.DeleteProductAsync(id);
+            TempData["success"] = "Product deleted successfully";
+
+            return RedirectToAction("Index");
+        }
+    }
+}
