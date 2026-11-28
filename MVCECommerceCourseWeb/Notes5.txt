@@ -21,4 +21,4 @@
 - You can delete the title label from the form and this will use the model's variable name (Name and DisplayOrder)
 you can and use [Display] on the model to specify what will be shown for that variable
 - [ValidateNever] will be used later. Instead of following the lecturer, just install it either by the right clicking and QuickAction,
-or install Microsoft.AspNetCore.Mvc.Core manually
+or install Microsoft.AspNetCore.Mvc.Core manually. This is used to skip model validation
