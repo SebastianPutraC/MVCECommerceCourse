@@ -32,3 +32,5 @@ This will be used on the javascript file we created previously
 - For optimization, since we already use GetAll (called in product.js) to get the data for the product, on the Index function just comment the var products = await _productService.GetAllProductsAsync();
 6.14 :
 - You can modify the structure of the table on the product.js. You can even put HTML stuff in there, check them out by using "render": function (data) { *codes }
+6.15 :
+- Change the create and views for the Product controller to from Create to Upsert (Update and Insert), combining the two function. Dont forget to change the asp-action on product's index to Upsert

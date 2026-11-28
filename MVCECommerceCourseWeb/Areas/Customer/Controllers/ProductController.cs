@@ -23,7 +23,7 @@ namespace MVCECommerceCourseWeb.Controllers
             return View("Index"); 
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Upsert()
         {
             return View();
         }
@@ -31,45 +31,13 @@ namespace MVCECommerceCourseWeb.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Create")]
-        public async Task<IActionResult> CreatePOST(Product product)
+        public async Task<IActionResult> UpsertPOST(Product product)
         {
             //Default error by checking on the DB requirement
             if (ModelState.IsValid)
             {
                 await _productService.CreateProductAsync(product);
                 TempData["success"] = "Product created successfully";
-
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-
-        public async Task<IActionResult> Update(int? id)
-        {
-            if(id == null || id == 0)
-            {
-                return NotFound();
-            }
-
-            var product = await _productService.GetProductByIdAsync(id.Value);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [ActionName("Update")]
-        public async Task<IActionResult> UpdatePOST(Product product)
-        {
-            //Default error by checking on the DB requirement
-            if (ModelState.IsValid)
-            {
-                await _productService.UpdateProductAsync(product);
-
-                TempData["success"] = "Product updated successfully";
 
                 return RedirectToAction("Index");
             }
